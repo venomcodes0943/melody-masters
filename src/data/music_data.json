@@ -1,0 +1,67 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "Guitar Fundamentals",
+      "slug": "guitar-fundamentals",
+      "description": "Learn the basics of playing guitar with our comprehensive beginner's course.",
+      "price": 32.1,
+      "instructor": "Jone Doe",
+      "isFeatured": true
+    },
+    {
+      "id": 2,
+      "title": "Piano for Beginners",
+      "slug": "piano-for-beginners",
+      "description": "A perfect starting point for anyone who wants to learn how to play the piano.",
+      "price": 45.0,
+      "instructor": "Sarah Lee",
+      "isFeatured": false
+    },
+    {
+      "id": 3,
+      "title": "Advanced Drumming Techniques",
+      "slug": "advanced-drumming-techniques",
+      "description": "Master drumming skills with advanced lessons taught by a pro.",
+      "price": 55.5,
+      "instructor": "Mark Wilson",
+      "isFeatured": true
+    },
+    {
+      "id": 4,
+      "title": "Music Production Masterclass",
+      "slug": "music-production-masterclass",
+      "description": "Learn how to produce professional-quality music using modern tools.",
+      "price": 99.9,
+      "instructor": "Emily Davis",
+      "isFeatured": true  
+    },
+    {
+      "id": 5,
+      "title": "Singing for Beginners",
+      "slug": "singing-for-beginners",
+      "description": "Find your voice and build singing confidence in this beginner's course.",
+      "price": 40.0,
+      "instructor": "Tom Anderson",
+      "isFeatured": true
+    },
+    {
+      "id": 6,
+      "title": "Songwriting Essentials",
+      "slug": "songwriting-essentials",
+      "description": "Discover the fundamentals of songwriting, from lyrics to melody creation.",
+      "price": 60.5,
+      "instructor": "Rachel Green",
+      "isFeatured": false
+    },
+    {
+      "id": 7,
+      "title": "Bass Guitar Mastery",
+      "slug": "bass-guitar-mastery",
+      "description": "Elevate your bass guitar skills with this advanced course.",
+      "price": 47.0,
+      "instructor": "James Stone",
+      "isFeatured": true
+    }
+  ]
+}
