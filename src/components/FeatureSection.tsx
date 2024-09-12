@@ -17,7 +17,7 @@ const FeatureSection = () => {
     (course: Course) => course.isFeatured
   );
   return (
-    <div className="w-full bg-[#0e0d0d] py-12 px-4">
+    <div className="w-full bg-[#0e0d0d] py-14 px-4">
       <div>
         <div className="text-center">
           <h2 className="text-base text-teal-400 font-semibold tracking-wide uppercases ">
@@ -28,7 +28,7 @@ const FeatureSection = () => {
           </p>
         </div>
       </div>
-      <div className="my-10">
+      <div className="my-14 ">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
           {FeatureCourse.map((course: Course) => (
             <div className="flex justify-center" key={course.id}>
