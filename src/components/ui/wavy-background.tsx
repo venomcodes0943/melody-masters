@@ -15,7 +15,7 @@ export const WavyBackground = ({
   waveOpacity = 0.5,
   ...props
 }: {
-  children?: any;
+  children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
   colors?: string[];
@@ -24,17 +24,14 @@ export const WavyBackground = ({
   blur?: number;
   speed?: "slow" | "fast";
   waveOpacity?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const noise = createNoise3D();
-  let w: number,
-    h: number,
-    nt: number,
-    i: number,
-    x: number,
-    ctx: any,
-    canvas: any;
+  let w: number, h: number, nt: number, i: number, x: number;
+  let ctx: CanvasRenderingContext2D | null = null;
+  let canvas: HTMLCanvasElement | null = null;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   const getSpeed = () => {
     switch (speed) {
       case "slow":
@@ -48,16 +45,24 @@ export const WavyBackground = ({
 
   const init = () => {
     canvas = canvasRef.current;
+    if (!canvas) return; // Ensure canvas is not null
+
     ctx = canvas.getContext("2d");
+    if (!ctx) return; // Ensure context is not null
+
     w = ctx.canvas.width = window.innerWidth;
     h = ctx.canvas.height = window.innerHeight;
     ctx.filter = `blur(${blur}px)`;
     nt = 0;
-    window.onresize = function () {
-      w = ctx.canvas.width = window.innerWidth;
-      h = ctx.canvas.height = window.innerHeight;
-      ctx.filter = `blur(${blur}px)`;
+
+    window.onresize = () => {
+      if (ctx) {
+        w = ctx.canvas.width = window.innerWidth;
+        h = ctx.canvas.height = window.innerHeight;
+        ctx.filter = `blur(${blur}px)`;
+      }
     };
+
     render();
   };
 
@@ -68,16 +73,21 @@ export const WavyBackground = ({
     "#e879f9",
     "#22d3ee",
   ];
+
   const drawWave = (n: number) => {
+    if (!ctx) return; // Check if ctx is not null
     nt += getSpeed();
+
     for (i = 0; i < n; i++) {
       ctx.beginPath();
       ctx.lineWidth = waveWidth || 50;
       ctx.strokeStyle = waveColors[i % waveColors.length];
+
       for (x = 0; x < w; x += 5) {
-        var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        const y = noise(x / 800, 0.3 * i, nt) * 100;
+        ctx.lineTo(x, y + h * 0.5); // Center the wave vertically
       }
+
       ctx.stroke();
       ctx.closePath();
     }
@@ -85,6 +95,7 @@ export const WavyBackground = ({
 
   let animationId: number;
   const render = () => {
+    if (!ctx) return; // Check if ctx is not null
     ctx.fillStyle = backgroundFill || "black";
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
@@ -97,7 +108,7 @@ export const WavyBackground = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  });
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
